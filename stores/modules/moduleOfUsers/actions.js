@@ -1,6 +1,19 @@
 import User from "../../../models/User.js";
 
 export default {
+  actionForUpdateUser(context, payload){
+
+    // User classından obje tanımla
+
+    if(payload.user){
+      localStorage.setItem('currentUser', JSON.stringify(payload.user));
+    }else{
+      localStorage.removeItem('currentUser');
+    }
+    context.commit("mutationsForUpdateUser", payload.user);
+  },
+
+
   async actionForGetUser(context, payload) {
 
     let id = payload.id;
